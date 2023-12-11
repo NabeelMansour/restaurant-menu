@@ -72,7 +72,8 @@ main {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #D2D2D2;
-  margin: auto 0;
+  margin: 0 auto;
+  /* border: 1px solid; */
 }
 
 .menu-add {
@@ -82,6 +83,15 @@ main {
 .menu-add img {
   display: block;
   margin-left: auto;
+}
+
+.menu-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* border: 1px solid; */
+  padding-bottom: 31px;
+  padding-top: 55px;
 }
 
 .menu-text-name {
@@ -118,4 +128,14 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.menu-emoji {
+  width: 70px;
+  min-height: 89px;
+  font-size: 78.72px;
+  /* display: inline-block; */
+  /* padding-top: 20px; */
+  line-height: 98.4px;
 }

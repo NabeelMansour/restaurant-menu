@@ -15,7 +15,12 @@
       </header>
       <main>
         <div class="item-container" id="item-container"></div>
-        <div class="order" id="order"></div>
+        <!-- ADDED DIV: ORDER-CONTAINER TO STORE ORDER DIV + TITLE 
+          AS TITLE SHOULD NOT BE DYNAMICALLY RENDERED -->
+        <div class="order-container" id="order-container">
+          <h2 style="display:none" id="order-container-title"> Your order </h2> 
+          <div class="order" id="order">  </div>
+        </div>
       </main>
 
       <script src="script.js" type="module"></script>

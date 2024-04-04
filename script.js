@@ -46,38 +46,7 @@ function addItemToMenu(selectedItem) {
   console.log(addItem);
   addItem.orderId = uuid();
   orderList.push(addItem);
-  renderItemOrder();
 }
-
-// ===== Render Functions ===== //
-
-// function renderItemOrder() {
-//   let price = 0;
-
-//   const items = orderList
-//     .map((item) => {
-//       price += item.price;
-
-//       return `
-//       <div class="order-item-container">
-//         <p>${item.name}</p>
-//         <span class="remove-item" data-remove="${item.orderId}">remove</span>
-//         <p class="order-item-price">$${item.price}
-//       </div>
-//     `;
-//     })
-//     .join("");
-
-//   order.innerHTML = `
-//     <h2 class="order-section-title">Your order</h2>
-//     ${items}
-//     <div class="order-total-price-container">
-//         <p class="order-total-price">Total price:</p>
-//         <p class="order-total-price">$${price}</p>
-//     </div>
-//     <button class="complete-button" data-complete="complete">Complete Order</p>
-//   `;
-// }
 
 function render() {
   document.querySelector("#item-container").innerHTML = getItemArray();

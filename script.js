@@ -100,6 +100,7 @@ cardDetailsForm.addEventListener("submit", function (e) {
   const name = detailsForm.get("fullName");
 
   const formMessage = `<p>Thanks, ${name}!Your order is on its way'!</p>`;
+  cashout.style.display = "block";
   cashout.innerHTML = formMessage;
 
   modal.style.display = "none";

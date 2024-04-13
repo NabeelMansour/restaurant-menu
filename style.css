@@ -169,6 +169,11 @@ main {
   gap: 10px;
 }
 
+.item-name,
+.total-price {
+  font-size: 28px;
+}
+
 .item-remove {
   color: #bbbbbb;
   cursor: pointer;
@@ -176,12 +181,14 @@ main {
 
 .item-price {
   margin-left: auto;
+  font-size: 20px;
 }
 
 .item-heading {
   text-align: center;
   margin-top: 30px;
   margin-bottom: 40px;
+  font-weight: 400;
 }
 
 .orders {

@@ -1,7 +1,7 @@
 import menuArray from "/data.js";
 import { v4 as uuid } from "https://jspm.dev/uuid";
 
-const totalItems = document.getElementById("total-items");
+const totalItems = document.querySelector("#total-items");
 let orderList = [];
 
 // ===== Get Items Function ===== //
@@ -43,15 +43,24 @@ function addItemToMenu(selectedItem) {
   const addItem = { ...selectedItem };
   addItem.orderId = uuid();
   orderList.push(addItem);
+  renderOrder();
+}
+
+// ===== Render function ===== //
+
+function renderOrder() {
+  const totalOrderPrice = orderList.reduce(function (total, currentPrice) {
+    return total + currentPrice.price;
+  }, 0);
 
   totalItems.innerHTML = `
           <div class="order-container">
-            <h3 class='item-heading'>Your Order</h3>
+            <h2 class='item-heading'>Your Order</h2>
             <div class="order" id="order"></div>
             <div class="item-divider"></div>
             <div class="item-total">
-                  <p>Total price:</p>
-                  <p class="item-price">&#36;</p>
+                  <p class="total-price">Total price:</p>
+                  <p class="item-price">&#36;${totalOrderPrice}</p>
             </div>
             <button class="order-btn">Complete order</button>
           </div>  
@@ -60,17 +69,17 @@ function addItemToMenu(selectedItem) {
   orderList.forEach(function (item) {
     orderItemList += `
             <div class="orders">
-              <p>${item.name}</p>
+              <p class="item-name">${item.name}</p>
               <p class="remove">remove</p>
               <p class="item-price">&#36;${item.price}</p>
             </div>
     `;
   });
-  console.log(orderItemList);
+
+  // console.log(totalOrderPrice);
+
   return (order.innerHTML = orderItemList);
 }
-
-// ===== Render function ===== //
 
 function render() {
   document.querySelector("#item-container").innerHTML = getItemArray();

@@ -17,6 +17,20 @@
         <div class="item-container" id="item-container"></div>
         <div class="total-items" id="total-items"></div>
       </main>
+      <div class="modal" id="modal">
+        <h3 class="modal-title">Enter card details</h3>
+        <form id="card-details-form">
+          <input type="text" placeholder="Enter your name" />
+          <input
+            type="number"
+            placeholder="Enter card number"
+            min="3"
+            required
+          />
+          <input type="number" placeholder="Enter cvv" min="3" required />
+          <button type="submit" class="submit-btn" id="submit-btn">Pay</button>
+        </form>
+      </div>
     </div>
     <script src="script.js" type="module"></script>
   </body>

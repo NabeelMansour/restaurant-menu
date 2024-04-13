@@ -2,6 +2,8 @@ import menuArray from "/data.js";
 import { v4 as uuid } from "https://jspm.dev/uuid";
 
 const totalItems = document.querySelector("#total-items");
+const submitBtn = document.querySelector("#submit-btn");
+const modal = document.querySelector("#modal");
 let orderList = [];
 
 // ===== Get Items Function ===== //
@@ -29,14 +31,6 @@ function getItemArray() {
   return items;
 }
 
-// ===== EventListeners ===== //
-
-document.addEventListener("click", function (e) {
-  if (e.target.dataset.id) {
-    addItemToMenu(menuArray[e.target.dataset.id]);
-  }
-});
-
 // ===== Event Function ===== //
 
 function addItemToMenu(selectedItem) {
@@ -46,7 +40,7 @@ function addItemToMenu(selectedItem) {
   renderOrder();
 }
 
-// ===== Render function ===== //
+// ===== Render functions ===== //
 
 function renderOrder() {
   const totalOrderPrice = orderList.reduce(function (total, currentPrice) {
@@ -54,7 +48,7 @@ function renderOrder() {
   }, 0);
 
   totalItems.innerHTML = `
-          <div class="order-container">
+          <div class="order-container" id="order-container">
             <h2 class='item-heading'>Your Order</h2>
             <div class="order" id="order"></div>
             <div class="item-divider"></div>
@@ -62,9 +56,14 @@ function renderOrder() {
                   <p class="total-price">Total price:</p>
                   <p class="item-price">&#36;${totalOrderPrice}</p>
             </div>
-            <button class="order-btn">Complete order</button>
+            <button class="order-btn" id="order-btn">Complete order</button>
           </div>  
   `;
+
+  document.getElementById("order-btn").addEventListener("click", function () {
+    modal.style.display = "inline";
+  });
+
   let orderItemList = "";
   orderList.forEach(function (item) {
     orderItemList += `
@@ -75,9 +74,6 @@ function renderOrder() {
             </div>
     `;
   });
-
-  // console.log(totalOrderPrice);
-
   return (order.innerHTML = orderItemList);
 }
 
@@ -85,3 +81,15 @@ function render() {
   document.querySelector("#item-container").innerHTML = getItemArray();
 }
 render();
+// ===== EventListeners ===== //
+
+document.addEventListener("click", function (e) {
+  if (e.target.dataset.id) {
+    addItemToMenu(menuArray[e.target.dataset.id]);
+  }
+  if (e.target.id === submitBtn.id) {
+    e.preventDefault();
+    modal.style.display = "none";
+    totalItems.style.display = "none";
+  }
+});

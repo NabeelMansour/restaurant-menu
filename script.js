@@ -1,8 +1,7 @@
 import menuArray from "/data.js";
 import { v4 as uuid } from "https://jspm.dev/uuid";
 
-const order = document.querySelector("#order");
-
+const order = document.getElementById("order");
 let orderList = [];
 
 // ===== Get Items Function ===== //
@@ -29,7 +28,6 @@ function getItemArray() {
   });
   return items;
 }
-getItemArray();
 
 // ===== EventListeners ===== //
 
@@ -39,14 +37,38 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// ===== Event Functions ===== //
+// ===== Event Function ===== //
 
 function addItemToMenu(selectedItem) {
   const addItem = { ...selectedItem };
-  console.log(addItem);
   addItem.orderId = uuid();
   orderList.push(addItem);
+
+  let orderItemList = `
+          <div class="order-container">
+            <h3 class='item-heading'>Your Order</h3>
+            <div class="item-total">
+                  <p>Total price:</p>
+                  <p class="item-price">&#36;</p>
+            </div>
+            <div class="item-divider"></div>
+            <button class="order-btn">Complete order</button>
+          </div>  
+  `;
+
+  orderList.forEach(function (item) {
+    orderItemList += `
+            <div class="orders">
+              <p>${item.name}</p>
+              <p class="remove">remove</p>
+              <p class="item-price">&#36;${item.price}</p>
+            </div>
+    `;
+  });
+  return (order.innerHTML = orderItemList);
 }
+
+// ===== Render function ===== //
 
 function render() {
   document.querySelector("#item-container").innerHTML = getItemArray();

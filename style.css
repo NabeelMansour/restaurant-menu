@@ -54,6 +54,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 90%;
+  margin: auto;
 }
 
 .item-container {
@@ -69,11 +71,11 @@ main {
   max-width: 504px;
   min-height: 140px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #D2D2D2;
   margin: 0 auto;
-  padding: 0 10px;
+
 }
 
 .menu-add {
@@ -286,4 +288,13 @@ input {
   margin-top: 20px;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.cashout {
+  background: #ecfdf5;
+  color: #065f46;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px 0;
+  font-size: 16px;
 }

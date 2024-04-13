@@ -4,7 +4,17 @@ import { v4 as uuid } from "https://jspm.dev/uuid";
 const totalItems = document.querySelector("#total-items");
 const submitBtn = document.querySelector("#submit-btn");
 const modal = document.querySelector("#modal");
+const cardDetailsForm = document.getElementById("card-details-form");
+const cashout = document.getElementById("cashout");
 let orderList = [];
+
+// ===== EventListeners ===== //
+
+document.addEventListener("click", function (e) {
+  if (e.target.dataset.id) {
+    addItemToMenu(menuArray[e.target.dataset.id]);
+  }
+});
 
 // ===== Get Items Function ===== //
 
@@ -81,15 +91,17 @@ function render() {
   document.querySelector("#item-container").innerHTML = getItemArray();
 }
 render();
-// ===== EventListeners ===== //
 
-document.addEventListener("click", function (e) {
-  if (e.target.dataset.id) {
-    addItemToMenu(menuArray[e.target.dataset.id]);
-  }
-  if (e.target.id === submitBtn.id) {
-    e.preventDefault();
-    modal.style.display = "none";
-    totalItems.style.display = "none";
-  }
+// ===== Submit Event ===== //
+
+cardDetailsForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const detailsForm = new FormData(cardDetailsForm);
+  const name = detailsForm.get("fullName");
+
+  const formMessage = `<p>Thanks, ${name}!Your order is on its way'!</p>`;
+  cashout.innerHTML = formMessage;
+
+  modal.style.display = "none";
+  totalItems.style.display = "none";
 });

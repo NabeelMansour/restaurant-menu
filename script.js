@@ -1,7 +1,7 @@
 import menuArray from "/data.js";
 import { v4 as uuid } from "https://jspm.dev/uuid";
 
-const order = document.getElementById("order");
+const totalItems = document.getElementById("total-items");
 let orderList = [];
 
 // ===== Get Items Function ===== //
@@ -44,18 +44,19 @@ function addItemToMenu(selectedItem) {
   addItem.orderId = uuid();
   orderList.push(addItem);
 
-  let orderItemList = `
+  totalItems.innerHTML = `
           <div class="order-container">
             <h3 class='item-heading'>Your Order</h3>
+            <div class="order" id="order"></div>
+            <div class="item-divider"></div>
             <div class="item-total">
                   <p>Total price:</p>
                   <p class="item-price">&#36;</p>
             </div>
-            <div class="item-divider"></div>
             <button class="order-btn">Complete order</button>
           </div>  
   `;
-
+  let orderItemList = "";
   orderList.forEach(function (item) {
     orderItemList += `
             <div class="orders">
@@ -65,6 +66,7 @@ function addItemToMenu(selectedItem) {
             </div>
     `;
   });
+  console.log(orderItemList);
   return (order.innerHTML = orderItemList);
 }
 

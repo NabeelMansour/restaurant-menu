@@ -55,7 +55,7 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .item-container {
@@ -64,7 +64,7 @@ main {
 
 .menu-text {
   width: 100%;
-  padding-left: 31px;
+  padding-left: 10px;
 }
 
 .menu-wrapper {

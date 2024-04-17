@@ -43,6 +43,8 @@ menuAdd.forEach((icon) => {
                         id: menuItem.id,
                         name: menuItem.name,
                         price: menuItem.price,
+                        amount: 1,
+                        sum: menuItem.price,
                       } 
             }
          })
@@ -58,25 +60,16 @@ function addToOrderArr(item) {
   for(let i = 0; i < orderArr.length; i++) {
     if(orderArr[i].id === item.id) {
       isItemFound = true        
-      orderArr[i].amount = orderArr[i].amount + 1
+      orderArr[i].amount = orderArr[i].amount + item.amount
       orderArr[i].sum = orderArr[i].amount * item.price
     }
   }
 
   if(!isItemFound) {
-    addItemToOrderArrFirstTime(item)
+    orderArr.push(item)
   }
 }
-    
-function addItemToOrderArrFirstTime(item) {
-  const orderArrItem =  {
-                        id: item.id,
-                        name: item.name,
-                        amount: 1,
-                        sum: item.price,
-                        } 
-  orderArr.push(orderArrItem)
-}
+
 
 
 function displayOrderedItems() {

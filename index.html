@@ -15,15 +15,45 @@
       </header>
       <main>
         <div class="item-container" id="item-container"></div>
+
         <!-- ADDED DIV: ORDER-CONTAINER TO STORE ORDER DIV + TITLE 
           AS TITLE SHOULD NOT BE DYNAMICALLY RENDERED -->
         <div class="order-container" id="order-container">
           <h2 style="display:none" id="order-container-title"> Your order </h2> 
           <div class="order" id="order">  </div>
         </div>
-      </main>
 
-      <script src="script.js" type="module"></script>
+        <div class="total-items" id="total-items"></div>
+        <div class="cashout" id="cashout"></div>
+
+      </main>
+      <div class="modal" id="modal">
+        <h3 class="modal-title">Enter card details</h3>
+        <form id="card-details-form">
+          <input
+            type="text"
+            placeholder="Enter your name"
+            name="fullName"
+            required
+          />
+          <input
+            type="number"
+            placeholder="Enter card number"
+            min="3"
+            name="card num"
+            required
+          />
+          <input
+            type="number"
+            placeholder="Enter cvv"
+            min="3"
+            name="cvv"
+            required
+          />
+          <button type="submit" class="submit-btn" id="submit-btn">Pay</button>
+        </form>
+      </div>
     </div>
+    <script src="script.js" type="module"></script>
   </body>
 </html>

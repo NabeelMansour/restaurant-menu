@@ -1,7 +1,13 @@
-import menuArray from "./data.js";
+import menuArray from "/data.js";
+import { v4 as uuid } from "https://jspm.dev/uuid";
+
 
 const container = document.querySelector("#item-container");
 const order = document.querySelector("#order");   
+
+
+
+// ===== Get Items Function ===== //
 
 const items = menuArray
   .map((item) => {
@@ -25,6 +31,7 @@ const items = menuArray
   .join("");
 
 container.innerHTML = items;
+
 
 
 // MY CODE FOR THE ORDER DISPLAY
@@ -110,6 +117,9 @@ function createOrderHTML() {
    
   return orderHTML  
 }
+
+
+
  
 
 // ANOTHER IDEA WAS TO USE THROUGH:

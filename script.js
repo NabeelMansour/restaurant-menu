@@ -17,6 +17,10 @@ document.addEventListener("click", function (e) {
   if (e.target.dataset.remove) {
     removeItem(e.target.dataset.remove);
   }
+
+  // if (e.target) {
+  //   console.log(e.target);
+  // }
 });
 
 // ===== Submit Event ===== //
@@ -33,7 +37,7 @@ cardDetailsForm.addEventListener("submit", function (e) {
 
 function removeItem(removeItemId) {
   orderList = orderList.filter(function (item) {
-    return item.orderId != removeItemId;
+    return item.orderId !== removeItemId;
   });
 
   if (orderList.length === 0) {
@@ -72,9 +76,21 @@ function getItemArray() {
 // ===== Add ITem Function ===== //
 
 function addItemToMenu(selectedItem) {
-  if (!orderList.includes(selectedItem)) {
-    const addItem = { ...selectedItem };
-    addItem.orderId = uuid();
+  const exists = orderList.find(
+    (item) => parseInt(item.id) === parseInt(selectedItem.id)
+  );
+  console.log(exists);
+
+  if (exists) {
+    exists.quantity++;
+  } else {
+    const addItem = {
+      ...selectedItem,
+      price: parseInt(selectedItem.price),
+      quantity: 1,
+      orderId: uuid().slice(0, 5),
+    };
+
     orderList.push(addItem);
   }
   renderOrder();
@@ -83,8 +99,8 @@ function addItemToMenu(selectedItem) {
 // ===== Render functions ===== //
 
 function renderOrder() {
-  const totalOrderPrice = orderList.reduce(function (total, currentPrice) {
-    return total + currentPrice.price;
+  const totalOrderPrice = orderList.reduce(function (total, item) {
+    return total + item.price * item.quantity;
   }, 0);
 
   totalItems.innerHTML = `
@@ -106,10 +122,17 @@ function renderOrder() {
 
   let orderItemList = "";
   orderList.forEach(function (item) {
+    if (orderItemList.includes(item)) {
+    }
     orderItemList += `
             <div class="orders" id="orders">
               <p class="item-name">${item.name}</p>
               <p class="remove" data-remove="${item.orderId}">remove</p>
+              <div class="quantity-controls">
+                <button class="decrease" data-id="${item.orderId}">−</button>
+                <span class="qty">${item.quantity}</span>
+                <button class="increase" data-id="${item.orderId}">+</button>
+              </div>
               <p class="item-price">&#36;${item.price}</p>
             </div>
     `;
